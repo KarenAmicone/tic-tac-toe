@@ -14,6 +14,7 @@ export default class Board extends React.Component {
           [0,0,0]
         ],
         currentPlayer: 1,
+        currentIcon: rocket,
         modalVisible: false,
         winner:null
       }
@@ -52,8 +53,10 @@ export default class Board extends React.Component {
 
     // Switching player
     let nextPlayer = (currentPlayer === 1) ? -1 : 1;
+    let nextIcon = (this.state.currentIcon == rocket) ? telescope : rocket;
     this.setState({
-      currentPlayer: nextPlayer
+      currentPlayer: nextPlayer,
+      currentIcon: nextIcon
     });
 
     let winner = this.theWinner();
@@ -176,6 +179,11 @@ export default class Board extends React.Component {
           <TouchableOpacity onPress = {()=> this.onPressTile(2, 2)} style={[styles.tile, {borderBottomWidth: 0, borderRightWidth: 0}]}>
             {this.showIcon(2,2)}
           </TouchableOpacity>
+        </View>
+        <View>
+        <Text style={styles.modalText}>
+            It's <Image style={styles.icon} source={this.state.currentIcon}/> turn
+        </Text>
         </View>
 
         <View style={{marginTop: 30}}>
