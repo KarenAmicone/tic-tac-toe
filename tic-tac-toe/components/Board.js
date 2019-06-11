@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Button} from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Button, ActivityIndicator} from 'react-native';
 import rocket from '../assets/rocket.png'
 import telescope from '../assets/telescope.png'
+import { Font } from 'expo';
 
 export default class Board extends React.Component {
    constructor(props){
@@ -16,9 +17,19 @@ export default class Board extends React.Component {
         currentPlayer: 1,
         currentIcon: rocket,
         modalVisible: false,
-        winner:null
+        winner:null,
+        fontLoaded: false
       }
    };
+
+   async componentDidMount(){
+    await Font.loadAsync({
+      'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+    });
+    this.setState({
+        fontLoaded: true
+    })
+}
 
    initializeBoard = () =>{
      this.setState({
@@ -145,7 +156,9 @@ export default class Board extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{flexDirection: "row"}}>
+        {this.state.fontLoaded ? (
+          <View style={styles.container}>
+          <View style={{flexDirection: "row"}}>
           <TouchableOpacity onPress = {()=> this.onPressTile(0, 0)} style={[styles.tile, {borderLeftWidth: 0, borderTopWidth: 0}]}>
             {this.showIcon(0,0)}
           </TouchableOpacity>
@@ -181,7 +194,7 @@ export default class Board extends React.Component {
           </TouchableOpacity>
         </View>
         <View>
-        <Text style={styles.modalText}>
+        <Text style={[styles.modalText, {fontFamily: 'space-mono'}]}>
             It's <Image style={styles.icon} source={this.state.currentIcon}/> turn
         </Text>
         </View>
@@ -211,6 +224,11 @@ export default class Board extends React.Component {
         </Modal>
       </View>
       </View>
+      ):(
+          <ActivityIndicator size="large"/>
+        )}
+      </View>  
+      
     );
   }
 };
