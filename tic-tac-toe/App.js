@@ -1,11 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import Board from './components/Board'
+import background from './assets/background.jpg'
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hello World this is tic-tac-toe</Text>
+        <ImageBackground source={background} style={{width: '100%', height: '100%'}}>
+          <Text>Background</Text>
+          <Board/>
+        </ImageBackground>
       </View>
     );
   }
@@ -14,7 +19,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

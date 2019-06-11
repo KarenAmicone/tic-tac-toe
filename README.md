@@ -1,5 +1,7 @@
 # Tic tac toe - React Native
 
+Photo by Diego PH on Unsplash
+
 ## Índice
 
 * [1. Preámbulo](#1-preámbulo)
