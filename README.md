@@ -1,6 +1,9 @@
 # Tic tac toe - React Native
 
 Photo by Diego PH on Unsplash
+Photo by Francis Nie on Unsplash
+Photo by Ivana Cajina on Unsplashs
+Photo by Jack Cain on Unsplash
 
 ## Índice
 

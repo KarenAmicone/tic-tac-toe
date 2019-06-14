@@ -31,14 +31,13 @@ class Header extends React.Component{
 
 const styles = StyleSheet.create({
     container: {
-      flexDirection: 'row',
-      height: 150,
+      flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
     },
     text: { 
       margin: 20, 
-      fontSize: 40,
+      fontSize: 30,
       color: 'white'
     }
   });

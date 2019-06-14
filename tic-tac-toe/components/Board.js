@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Button, ActivityIndicator} from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Button, ActivityIndicator, TouchableHighlight, ImageBackground} from 'react-native';
 import rocket from '../assets/rocket.png'
 import telescope from '../assets/telescope.png'
+import restart from '../assets/repeat.png'
+import modal from '../assets/modal-back.jpg'
 import { Font } from 'expo';
 
 export default class Board extends React.Component {
@@ -39,7 +41,8 @@ export default class Board extends React.Component {
         [0,0,0],
         [0,0,0]
         ],
-        currentPlayer: 1
+        currentPlayer: 1,
+        currentIcon: rocket
      })
    }
 
@@ -74,12 +77,12 @@ export default class Board extends React.Component {
     if(winner === 1){
       this.setModalVisible();
       this.setState({
-        winner: <Text style={styles.modalText}>The winner is: <Image style={{width: 50, height: 50}} source={rocket}/></Text>
+        winner: <Text style={styles.modalText}>The winner is: <Image style={{width: 35, height: 35}} source={rocket}/></Text>
       })
     } else if( winner === -1){
       this.setModalVisible();
       this.setState({
-        winner: <Text style={styles.modalText}>The winner is: <Image style={{width: 50, height: 50}} source={telescope}/></Text>
+        winner: <Text style={styles.modalText}>The winner is: <Image style={{width: 35, height: 35}} source={telescope}/></Text>
       })
     } else if(winner === 2){
       this.setModalVisible();
@@ -193,10 +196,24 @@ export default class Board extends React.Component {
             {this.showIcon(2,2)}
           </TouchableOpacity>
         </View>
-        <View>
-        <Text style={[styles.modalText, {fontFamily: 'space-mono'}]}>
-            It's <Image style={styles.icon} source={this.state.currentIcon}/> turn
-        </Text>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{fontFamily: 'space-mono',
+                        margin: 30, 
+                        fontSize: 30,
+                        color: 'white'
+                        }}>
+              It's <Image style={{width: 30, height:30}} source={this.state.currentIcon}/> turn
+          </Text>
+          
+            <TouchableHighlight
+              onPress={() => {
+                this.setModalVisible(false);
+                this.initializeBoard();
+              }}
+              accessibilityLabel="Play again"
+              >
+              <Image style={{width: 60, height: 60}} source={restart}/>
+              </TouchableHighlight>
         </View>
 
         <View style={{marginTop: 30}}>
@@ -207,6 +224,7 @@ export default class Board extends React.Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
+          <ImageBackground source={modal} style={{width: '100%', height: '100%'}}>
           <View style={styles.modalContainer}>
             <View style={styles.innerContainer}>
               {this.state.winner}
@@ -216,11 +234,12 @@ export default class Board extends React.Component {
                     this.initializeBoard();
                   }}
                   title="Play again"
-                  color="blue"
+                  color="#1e1d1e"
                   accessibilityLabel="Play again"
                 />
             </View>
           </View>
+          </ImageBackground>
         </Modal>
       </View>
       </View>
@@ -235,15 +254,15 @@ export default class Board extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 4,
     alignItems: 'center',
     justifyContent: 'center',
   },
   tile: {
     borderWidth: 3,
     borderColor: 'white',
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -252,17 +271,16 @@ const styles = StyleSheet.create({
     height: 50
   },
   modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#841584',
+    marginTop: 450,
+    justifyContent: 'center'
   },
   innerContainer: {
-    alignItems: 'center',
-    height: 80
+    alignSelf: 'center',
+    justifyContent: 'center'
   }, 
   modalText : {
     margin: 20, 
-    fontSize: 40,
-    color: 'white'
+    color: 'white',
+    fontSize: 30
   }
 });
