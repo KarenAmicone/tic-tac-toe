@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, ImageBackground } from 'react-native'
 import Board from './components/Board'
 import Header from './components/Header'
 import background from './assets/background.jpg'

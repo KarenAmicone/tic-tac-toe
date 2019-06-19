@@ -1,10 +1,10 @@
-import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Button, ActivityIndicator, TouchableHighlight, ImageBackground} from 'react-native';
+import React from 'react'
+import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Button, ActivityIndicator, TouchableHighlight, ImageBackground} from 'react-native'
 import rocket from '../assets/rocket.png'
 import telescope from '../assets/telescope.png'
 import restart from '../assets/repeat.png'
 import modal from '../assets/modal-back.jpg'
-import { Font } from 'expo';
+import { Font } from 'expo'
 
 export default class Board extends React.Component {
    constructor(props){
@@ -234,7 +234,7 @@ export default class Board extends React.Component {
                     this.initializeBoard();
                   }}
                   title="Play again"
-                  color="#1e1d1e"
+                  color="#86638d"
                   accessibilityLabel="Play again"
                 />
             </View>
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     height: 50
   },
   modalContainer: {
-    marginTop: 450,
+    marginTop: 300,
     justifyContent: 'center'
   },
   innerContainer: {

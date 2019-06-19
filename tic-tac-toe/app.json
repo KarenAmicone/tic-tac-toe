@@ -25,7 +25,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "",
+    "description": "Play tic-tac-toe in the space",
     "githubUrl": "https://github.com/KarenAmicone/tic-tac-toe"
   }
 }
